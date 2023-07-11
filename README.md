@@ -1,6 +1,6 @@
 # Image Line Thickness Analyzer
 
-This repository contains a Python script for analyzing images to measure the thickness of lines present in the image. It utilizes image processing techniques to detect the lines and calculates the minimum distance between the lines in both directions. The script also provides visualizations of the image, detected lines, and thickness measurements. The results, including average thickness, standard deviation, minimum and maximum thickness, are printed and saved in a text file. Additionally, an output image with visualizations is generated and saved.
+This repository contains a Python script for analyzing images to measure the distance between two lines present in the image. It requires that the lines are continupis and purely white. It utilizes image processing techniques to detect the lines and calculates the minimum distance between the lines in both directions. The script also provides visualizations of the image, detected lines, and thickness measurements. The results, including average thickness, standard deviation, minimum and maximum thickness, are printed and saved in a text file. Additionally, an output image with visualizations is generated and saved.
 
 ## Installation
 
