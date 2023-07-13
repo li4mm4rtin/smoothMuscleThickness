@@ -24,7 +24,7 @@ To analyze an image and measure line thickness, follow these steps:
 1. Open a terminal or command prompt and navigate to the directory where you downloaded or cloned the code.
 2. Run the Python script with the following command:
    ```
-   python analyze_image.py
+   python smoothMuscleThickness.py
    ```
 3. The script will prompt you to select an image file for analysis. Choose the desired image file.
 4. If you want to provide a scale length for accurate measurements, enter the length of the scale bar in the image when prompted. Alternatively, you can manually select the scale bar in the image.
