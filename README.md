@@ -8,7 +8,7 @@ To run the Python code, follow these steps:
 
 1. Download the code from this repository or clone it using the following command:
    ```
-   git clone https://github.com/your-username/your-repository.git
+   git clone https://github.com/li4mm4rtin/smoothMuscleThickness.git
    ```
 2. Make sure you have Python 3 installed on your system.
 3. Open a terminal or command prompt and navigate to the directory where you downloaded or cloned the code.
