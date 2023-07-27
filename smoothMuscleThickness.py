@@ -137,6 +137,8 @@ def printer(NL, MinDistancesAB, MinDistancesBA, averageLengthPerPixel, MinDistan
         with open(textFileName, 'w') as file:
             file.write("\n------------------- I am troubleshooting data -------------------\n")
             file.write(f"Number of detected lines: {NL}\n")
+            if NL == 4:
+                file.write("Assumed complete circle in image. If this is not desired effect please adjust image.")
             file.write(f"Average thickness 1 -> 2 (pixels):  {np.mean(MinDistancesAB)}\n")
             file.write(f"Average thickness 2 -> 1 (pixels):  {np.mean(MinDistancesBA)}\n")
             file.write(f"Length in \u03BCm per pixel:  {np.mean(averageLengthPerPixel)}\n")
@@ -158,6 +160,7 @@ def printer(NL, MinDistancesAB, MinDistancesBA, averageLengthPerPixel, MinDistan
 def calculate_min_distances(line1, line2):
     print("------------------- Finding Friends -------------------")
     distances = cdist(line1, line2)
+    print(distances.shape)
     min_distances = np.min(distances, axis=1)
     min_indices = np.argmin(distances, axis=1)
     print("------------------- Friends Found -------------------")
@@ -168,7 +171,6 @@ def calculate_min_distances(line1, line2):
 def create_lines_image(image_path, lineThickness, ALPP):
     # Detects the lines on the image
     print("------------------- Detecting Lines -------------------")
-    lineThickness = 5
     image = cv2.imread(image_path)
     grayscale = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     _, threshold_preExapnasion = cv2.threshold(grayscale, 254, 255, cv2.THRESH_BINARY)
@@ -184,17 +186,28 @@ def create_lines_image(image_path, lineThickness, ALPP):
     if len(contours) == 2:
         print("------------------- Finding Distance From A to B -------------------")
         minimumDistancesAB, minIndexAB = calculate_min_distances(contours[0], contours[1])
-
         print("------------------- Found Distance From A to B -------------------\n")
 
         print("------------------- Finding Distance From B to A -------------------")
         minimumDistancesBA, minIndexBA = calculate_min_distances(contours[1], contours[0])
         print("------------------- Found Distance From B to A -------------------")
-    elif len(contours) > 2:
-        print(len(contours))
-        exit("Too Many Contours: Increase Line Thickness")
+    elif len(contours) == 4:
+        print("Assumed complete circle in image. If this is not desired effect please adjust image.")
+        contours[1] = contours[2]
+        print("------------------- Finding Distance From A to B -------------------")
+        minimumDistancesAB, minIndexAB = calculate_min_distances(contours[0], contours[1])
+        print("------------------- Found Distance From A to B -------------------\n")
+
+        print("------------------- Finding Distance From B to A -------------------")
+        minimumDistancesBA, minIndexBA = calculate_min_distances(contours[1], contours[0])
+        print("------------------- Found Distance From B to A -------------------")
+    elif len(contours) == 3:
+        print("Three contours detected. Please adjust image.")
+        exit("Either increase or decrease line thickness parameter.")
+    elif len(contours) == 1:
+        exit("Too few contours: Decrease line thickness")
     else:
-        exit("Too Few Contours: Decrease Line Thickness")
+        exit("Too many contours: Increase line thickness")
 
     # Creates and displays the figure
     fig = plt.figure(figsize=(12, 12))
@@ -262,14 +275,12 @@ def create_lines_image(image_path, lineThickness, ALPP):
     # Shows the histogram of the measurement
     axs7.hist(minimumDistancesLengthAB, label='Thickness from 1 -> 2', alpha=0.5, color='red')
     axs7.axvline(x=np.mean(minimumDistancesLengthAB), label='Mean thickness 1 -> 2', linestyle='dashed', color='red')
-    axs7.hist(minimumDistancesLengthBA, label='Thickness from 1 -> 2', alpha=0.5, color='orange')
+    axs7.hist(minimumDistancesLengthBA, label='Thickness from 2 -> 1', alpha=0.5, color='orange')
     axs7.axvline(x=np.mean(minimumDistancesLengthBA), label='Mean thickness 2 -> 1', linestyle='dashed', color='orange')
     axs7.set_title('Histograms of Measurement Lines')
     axs7.legend()
     axs7.set_ylabel('Count')
     axs7.set_xlabel('Thickness (\u03BCm)')
-
-    print(len(minimumDistancesLengthAB), len(minimumDistancesLengthBA))
 
     # Calls printer and saves text file
     printer(
@@ -305,4 +316,4 @@ SL = None
 
 image_path = get_image_path()
 averageLengthPerPixel = get_scale_length(image_path, scale_length=SL)
-create_lines_image(image_path, lineThickness=5, ALPP=averageLengthPerPixel)
+create_lines_image(image_path, lineThickness=1, ALPP=averageLengthPerPixel)
