@@ -1,0 +1,19 @@
+
+------------------- I am troubleshooting data -------------------
+Number of detected lines: 2
+Average thickness 1 -> 2 (pixels):  217.24979668726192
+Average thickness 2 -> 1 (pixels):  208.87341824094116
+Length in μm per pixel:  7.425742574257426
+
+------------------- I am relevant data -------------------
+Average thickness 1 -> 2 (μm): 1613.241064509371
+Average thickness 2 -> 1 (μm): 1551.0402344624342 
+
+Standard deviation thickness 1 -> 2 (μm): 143.36546381144902
+Standard deviation thickness 2 -> 1 (μm): 112.46043754885062 
+
+Minimum thickness 1 -> 2 (μm): 1336.489266127738
+Minimum thickness 2 -> 1 (μm): 1336.489266127738 
+
+Maximum thickness 1 -> 2 (μm): 1950.1306389243975
+Maximum thickness 2 -> 1 (μm): 1771.3159072093906

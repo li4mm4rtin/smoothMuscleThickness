@@ -1,0 +1,19 @@
+
+------------------- I am troubleshooting data -------------------
+Number of detected lines: 4
+Assumed complete circle in image. If this is not desired effect please adjust image.Average thickness 1 -> 2 (pixels):  41.8733517235339
+Average thickness 2 -> 1 (pixels):  43.80413792964362
+Length in μm per pixel:  18.633540372670808
+
+------------------- I am relevant data -------------------
+Average thickness 1 -> 2 (μm): 780.2487898795138
+Average thickness 2 -> 1 (μm): 816.2261726020552 
+
+Standard deviation thickness 1 -> 2 (μm): 291.9766832296014
+Standard deviation thickness 2 -> 1 (μm): 327.9331771872186 
+
+Minimum thickness 1 -> 2 (μm): 71.10716237177212
+Minimum thickness 2 -> 1 (μm): 71.10716237177212 
+
+Maximum thickness 1 -> 2 (μm): 1534.7593888614063
+Maximum thickness 2 -> 1 (μm): 1659.4904369938783
