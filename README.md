@@ -41,3 +41,13 @@ Contributions to this project are welcome. If you encounter any issues or have s
 ## License
 
 This code is licensed under the [MIT License](LICENSE). Feel free to modify and distribute it as needed.
+
+If you use this code in your work please consider citing us:
+```
+@misc{smoothMuscleThickness,
+  author = {Liam Martin and Megan Routzong and Steven Abramowitch},
+  title = {{Smooth Muscle Thickness Calculator}},
+  howpublished = "\url{https://github.com/li4mm4rtin/smoothMuscleThickness}",
+  year = {2023},
+}
+```
